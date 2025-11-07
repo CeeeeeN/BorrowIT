@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="plv logo.jpg" alt="Logo 1" class="header-logo">
+            <img src="suhay ce logo.jpg" alt="Logo 2" class="header-logo">
+            <h1>BorrowIT Suhay CE</h1>
+        </div>
+
+        <nav>
+            <a href="admin.html" class="nav-btn active">Dashboard</a>
+            <a href="inventory.html" class="nav-btn">Inventory</a>
+            <a href="requests.html" class="nav-btn">Requests</a>
+            <a href="records.html" class="nav-btn">Records</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="dashboard-header">
+            <div>
+                <h2 class="welcome">Welcome, Admin!</h2>
+                <p class="dashboard-description">
+                    Manage your equipment inventory, approve borrowing requests, and track all transactions from this dashboard.
+                </p>
+            </div>
+            <div class="quick-actions">
+                <a href="inventory.html" class="action-btn primary">+ Add New Item</a>
+                <a href="requests.html" class="action-btn secondary">View Requests</a>
+            </div>
+        </div>
+
+        <div class="card-container">
+            <div class="card">
+                <div class="card-header">Total Items</div>
+                <table class="card-table">
+                    <tbody>
+                        <tr>
+                            <td class="card-number"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <div class="card-header">Borrowed Items</div>
+                <table class="card-table">
+                    <tbody>
+                        <tr>
+                            <td class="card-number"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <div class="card-header">Pending Requests</div>
+                <table class="card-table">
+                    <tbody>
+                        <tr>
+                            <td class="card-number"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="activity-section">
+            <div class="section-header">
+                <h3>Recent Activity</h3>
+                <a href="records.html" class="view-all">View All →</a>
+            </div>
+
+            <div class="activity-list">
+                <div class="activity-item">
+                    <div class="activity-icon borrowed"></div>
+                    <div class="activity-details">
+                        <div class="activity-text">
+                            <strong>Paulo Galarosa</strong> borrowed <strong>Projector</strong>
+                        </div>
+                        <div class="activity-date">Nov 1, 2025</div>
+                    </div>
+                    <div class="activity-status status-borrowed">Borrowed</div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon returned"></div>
+                    <div class="activity-details">
+                        <div class="activity-text">
+                            <strong>Paulo Galarosa</strong> returned <strong>Projector</strong>
+                        </div>
+                        <div class="activity-date">Nov 3, 2025</div>
+                    </div>
+                    <div class="activity-status status-returned">Returned</div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon pending"></div>
+                    <div class="activity-details">
+                        <div class="activity-text">
+                            <strong>Kenmar Bernardino</strong> requested <strong>Camera</strong>
+                        </div>
+                        <div class="activity-date">Nov 5, 2025</div>
+                    </div>
+                    <div class="activity-status status-pending">Pending</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="popular-items-section">
+            <div class="section-header">
+                <h3>Most Borrowed Items</h3>
+            </div>
+
+            <div class="popular-items-grid">
+                <div class="popular-item">
+                    <div class="item-rank">1</div>
+                    <div class="item-details">
+                        <div class="item-name">Projector</div>
+                        <div class="item-count">8 times borrowed</div>
+                    </div>
+                </div>
+
+                <div class="popular-item">
+                    <div class="item-rank">2</div>
+                    <div class="item-details">
+                        <div class="item-name">Camera</div>
+                        <div class="item-count">5 times borrowed</div>
+                    </div>
+                </div>
+
+                <div class="popular-item">
+                    <div class="item-rank">3</div>
+                    <div class="item-details">
+                        <div class="item-name">Laptop</div>
+                        <div class="item-count">3 times borrowed</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

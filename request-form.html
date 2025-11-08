@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>BorrowIt Suhay CE | Request Form</title>
+        <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+
+    <body class="login-body">
+        <header class="login-header">
+            <div class="logo-container">
+                <img src="img/plv logo.jpg" alt="PLV Logo" class="header-logo">
+                <h1>BorrowIt Suhay CE</h1>
+                <img src="img/suhay ce logo.jpg" alt="Suhay CE Logo" class="header-logo">
+            </div>
+        </header>
+
+        <div class="login-container">
+            <div class="login-card">
+                <h2 class="login-title">Borrow Request Form</h2>
+
+                <form class="login-form">
+
+                    <div class="form-input">
+                        <label>Student ID</label>
+                        <input type="text" name="student_id" placeholder="Enter student ID" required>
+                    </div>
+
+                    <div class="form-input">
+                        <label>Student Name</label>
+                        <input type="text" name="student_name" placeholder="Enter student name" required>
+                    </div>
+
+                    <div class="form-input">
+                        <label>Year & Section</label>
+                        <input type="text" name="year_section" placeholder="Ex. BSCE 3-1" required>
+                    </div>
+
+                    <div class="form-input">
+                        <label>Item to borrow</label>
+                        <div class="search-item">
+                            <input type="text" id="itemInput" placeholder="Select an Item" autocomplete="off" required>
+                            <div class="dropdown-list" id="dropdownList">
+                                <div data-value="calculator">Calculator</div>
+                                <div data-value="ruler">Ruler</div>
+                                <div data-value="tsquare">T-Square</div>
+                                <div data-value="compass">Compass</div>
+                                <div data-value="protractor">Protractor</div>
+                                <div data-value="divider">Proportional Dividers</div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="item" id="itemValue">
+                    </div>
+
+                    <div class="form-input">
+                        <label>Quantity</label>
+                        <input type="number" name="quantity" min="1" placeholder="Enter quantity" required>
+                    </div>
+
+                    <button type="submit" class="action-btn primary">Submit Request</button>
+                </form>
+            </div>
+        </div>
+
+        <script>
+            const input = document.getElementById("itemInput");
+            const list = document.getElementById("dropdownList");
+            const hidden = document.getElementById("itemValue");
+
+            // Show dropdown when inputted
+            input.addEventListener("focus", () => {
+                list.style.display = "block";
+            });
+
+            // Filters while typing
+            input.addEventListener("keyup", () => {
+                let filter = input.value.toLowerCase();
+                list.querySelectorAll("div").forEach(option => {
+                    option.style.display = option.textContent.toLowerCase().includes(filter) ? "block" : "none";
+                });
+            });
+
+            // Selecting an item
+            list.addEventListener("click", (e) => {
+                if (e.target.matches("div")) {
+                    input.value = e.target.textContent;
+                    hidden.value = e.target.dataset.value;
+                    list.style.display = "none";
+                }
+            });
+
+            //Close dropdown when clicking outside
+            document.addEventListener("click", (e) => {
+                if (!e.target.closest(".search-item")) {
+                    list.style.display = "none";
+                }
+            });
+        </script>
+    </body>
+</html>

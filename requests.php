@@ -39,19 +39,21 @@ include("DB.php");
                     <tr>
                         <th>Borrower</th>
                         <th>Item</th>
+                        <th>QTY</th>
                         <th>Date</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                        $sql = "SELECT borrow_log_id, student_name, student_number, year_section, item_name, borrow_date, log_status FROM student_borrow_logs WHERE log_status = 'Requested' ORDER BY borrow_log_id DESC";
+                        $sql = "SELECT borrow_log_id, student_name, student_number, year_section, item_name, quantity_borrowed, borrow_date, log_status FROM student_borrow_logs WHERE log_status = 'Requested' ORDER BY borrow_log_id DESC";
 				        $result = mysqli_query($conn, $sql);
 
                         while ($row = mysqli_fetch_assoc($result)) {
                             echo "<tr>";
                             echo "<td>{$row['student_name']}<br>{$row['student_number']}<br>{$row['year_section']}</td>";
                             echo "<td>{$row['item_name']}</td>";
+                            echo "<td>{$row['quantity_borrowed']}</td>";
                             echo "<td>{$row['borrow_date']}</td>";
                             echo "<td>";
                             echo "<form action='borrow_status.php' method='POST'>";

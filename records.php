@@ -38,6 +38,7 @@ include("DB.php");
                     <tr>
                         <th>Borrower</th>
                         <th>Item</th>
+                        <th>QTY</th>
                         <th>Borrow Date</th>
                         <th>Return Date</th>
                         <th>Status</th>
@@ -45,13 +46,14 @@ include("DB.php");
                 </thead>
                 <tbody>
                     <?php
-                        $sql = "SELECT student_name, student_number, year_section, item_name, borrow_date, return_date, log_status FROM student_borrow_logs ORDER BY borrow_log_id DESC";
+                        $sql = "SELECT student_name, student_number, year_section, item_name, quantity_borrowed, borrow_date, return_date, log_status FROM student_borrow_logs ORDER BY borrow_log_id DESC";
 				        $result = mysqli_query($conn, $sql);
 
                         while ($row = mysqli_fetch_assoc($result)) {
                             echo "<tr>";
                             echo "<td>{$row['student_name']}<br>{$row['student_number']}<br>{$row['year_section']}</td>";
                             echo "<td>{$row['item_name']}</td>";
+                            echo "<td>{$row['quantity_borrowed']}</td>";
                             echo "<td>{$row['borrow_date']}</td>";
                             echo "<td>{$row['return_date']}</td>";
                             echo "<td>{$row['log_status']}</td>";

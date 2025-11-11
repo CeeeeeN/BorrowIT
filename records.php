@@ -59,10 +59,13 @@ include("DB.php");
                             echo "<td>{$row['log_status']}</td>";
                             echo "</tr>";
                         }
+
+						mysqli_close($conn);
                     ?>
                 </tbody>
             </table>
         </div>
     </main>
 </body>
+
 </html>

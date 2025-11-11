@@ -1,3 +1,7 @@
+<?php
+include("DB.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -43,12 +47,15 @@
                         <div class="search-item">
                             <input type="text" id="itemInput" placeholder="Select an Item" autocomplete="off" required>
                             <div class="dropdown-list" id="dropdownList">
-                                <div data-value="calculator">Calculator</div>
-                                <div data-value="ruler">Ruler</div>
-                                <div data-value="tsquare">T-Square</div>
-                                <div data-value="compass">Compass</div>
-                                <div data-value="protractor">Protractor</div>
-                                <div data-value="divider">Proportional Dividers</div>
+                                <?php
+                                $sql = "SELECT * FROM inventory";
+                                $result = mysqli_query($conn, $sql);
+
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo "<div data-value='{$row['name']}'>{$row['name']}</div>";
+                                }
+                                
+                                ?>
                             </div>
                         </div>
 

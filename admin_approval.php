@@ -15,11 +15,11 @@
             <h1>BorrowIT Suhay CE</h1>
         </div>
         <nav>
+            <a href="admin_approval.php" class="nav-btn active">Superadmin</a>
             <a href="index.html" class="nav-btn">Dashboard</a>  
             <a href="inventory.php" class="nav-btn">Inventory</a>
             <a href="requests.php" class="nav-btn">Requests</a>
             <a href="records.php" class="nav-btn">Records</a>
-            <a href="admin_approval.php" class="nav-btn active">Admin Approval</a>
         </nav>
     </header>
 
@@ -170,4 +170,5 @@
         });
     </script>
 </body>
+
 </html>

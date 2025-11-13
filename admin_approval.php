@@ -23,7 +23,8 @@
         </nav>
     </header>
 
-    <main class="inventory-main">
+    <main class="admin-main">
+        <!-- Pending Admin Registrations -->
         <div class="page-header">
             <div>
                 <h2 class="page-title">Admin Registration Requests</h2>
@@ -74,6 +75,99 @@
                 </tbody>
             </table>
         </div>
+
+        <!-- Existing Admin Accounts -->
+        <div class="page-header admin-accounts-header">
+            <div>
+                <h2 class="page-title">Admin Accounts</h2>
+                <p class="page-description">Manage current admin and superadmin accounts.</p>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table class="inventory-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Account Type</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Chaelsy</td>
+                        <td>ChaelsyHitTheJasPot@gmail.com</td>
+                        <td>
+                            <div class="password-wrapper">
+                                <input type="password" value="hehe" class="admin-password">
+                                <img class="toggle-password" src="img/eyeClose.png" alt="Toggle password visibility">
+                            </div>
+                        </td>
+                        <td>
+                            <select class="admin-role-select">
+                                <option selected>SuperAdmin</option>
+                                <option>Admin</option>
+                            </select>
+                        </td>
+                        <td>
+                            <button type="button" class="approve-btn">Save Changes</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Mark 2</td>
+                        <td>SKJERALD@gmail.com</td>
+                        <td>
+                            <div class="password-wrapper">
+                                <input type="password" value="wahhhhh" class="admin-password">
+                                <img class="toggle-password" src="img/eyeClose.png" alt="Toggle password visibility">
+                            </div>
+                        </td>
+                        <td>
+                            <select class="admin-role-select">
+                                <option selected>Admin</option>
+                                <option>SuperAdmin</option>
+                            </select>
+                        </td>
+                        <td>
+                            <button type="button" class="approve-btn">Save Changes</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Jas</td>
+                        <td>VALERT@gmail.com</td>
+                        <td>
+                            <div class="password-wrapper">
+                                <input type="password" value="halo" class="admin-password">
+                                <img class="toggle-password" src="img/eyeClose.png" alt="Toggle password visibility">
+                            </div>
+                        </td>
+                        <td>
+                            <select class="admin-role-select">
+                                <option selected>Admin</option>
+                                <option>SuperAdmin</option>
+                            </select>
+                        </td>
+                        <td>
+                            <button type="button" class="approve-btn">Save Changes</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </main>
+
+    <script>
+        // Toggle password visibility
+        document.querySelectorAll('.toggle-password').forEach(icon => {
+            icon.addEventListener('click', () => {
+                const input = icon.previousElementSibling;
+                const isHidden = input.type === 'password';
+                input.type = isHidden ? 'text' : 'password';
+                icon.src = isHidden ? 'img/eyeOpen.png' : 'img/eyeClose.png';
+            });
+        });
+    </script>
 </body>
 </html>

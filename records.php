@@ -46,7 +46,7 @@ include("DB.php");
                 </thead>
                 <tbody>
                     <?php
-                        $sql = "SELECT student_name, student_number, year_section, item_name, quantity_borrowed, borrow_date, return_date, log_status FROM student_borrow_logs ORDER BY borrow_log_id DESC";
+                        $sql = "SELECT borrow_log_id, student_name, student_number, year_section, item_name, quantity_borrowed, borrow_date, return_date, log_status FROM student_borrow_logs ORDER BY borrow_log_id DESC";
 				        $result = mysqli_query($conn, $sql);
 
                         while ($row = mysqli_fetch_assoc($result)) {
@@ -55,10 +55,21 @@ include("DB.php");
                             echo "<td>{$row['item_name']}</td>";
                             echo "<td>{$row['quantity_borrowed']}</td>";
                             echo "<td>{$row['borrow_date']}</td>";
-                            echo "<td>{$row['return_date']}</td>";
+                            echo "<td>";
+                            if (is_null($row['return_date'])) {
+                                echo "<form action='mark_returned.php' method='POST' style='display:inline;'>";
+                                echo "<input type='hidden' name='borrow_log_id' value='" . $row['borrow_log_id'] . "'>";
+                                echo "<button type='submit' class='action-btn primary'>Mark Returned</button>";
+                                echo "</form>";
+                            } else {
+                                echo $row['return_date'] ?: '-';
+                            }
+                            echo "</td>";
                             echo "<td>{$row['log_status']}</td>";
                             echo "</tr>";
                         }
+
+                        mysqli_close($conn);
                     ?>
                 </tbody>
             </table>

@@ -76,4 +76,5 @@ include("DB.php");
         </div>
     </main>
 </body>
+
 </html>

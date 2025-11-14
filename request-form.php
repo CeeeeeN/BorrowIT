@@ -52,7 +52,9 @@ include("DB.php");
                                 $result = mysqli_query($conn, $sql);
 
                                 while ($row = mysqli_fetch_assoc($result)) {
-                                    echo "<div data-value='{$row['name']}'>{$row['name']}</div>";
+                                    if($row['quantity'] >= 1) {
+                                        echo "<div data-value='{$row['name']}'>{$row['name']}</div>";
+                                    }
                                 }
                                 
                                 ?>

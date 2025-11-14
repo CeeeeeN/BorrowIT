@@ -1,5 +1,5 @@
 <?php
-require 'db_connect.php'; // Connect to the database
+require 'DB.php'; // Connect to the database
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = trim($_POST['email']);
@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         // Verify password
 			if (password_verify($password, $user['password_hash'])) {
-            echo "<script>alert('Login successful! Welcome, {$user['name']}'); window.location.href='admin.html';</script>";
+            echo "<script>alert('Login successful! Welcome, {$user['name']}'); window.location.href='records.html';</script>";
         } else {
             echo "<script>alert('Incorrect password! Please try again.'); window.history.back();</script>";
         }

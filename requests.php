@@ -64,6 +64,8 @@ include("DB.php");
                             echo "</td>";
                             echo "</tr>";
                         }
+
+                        mysqli_close($conn);
                     ?>
                 </tbody>
             </table>

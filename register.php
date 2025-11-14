@@ -1,5 +1,5 @@
 <?php
-require 'db_connect.php'; // Connect to database
+require 'DB.php'; // Connect to database
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); // helps show MySQL errors for debugging
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
     // Insert new admin record
-    $stmt = $conn->prepare("INSERT INTO admin (name, email, password_hash) VALUES (?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO admin (name, email, password) VALUES (?, ?, ?)");
     if (!$stmt) {
         die("Prepare failed (insert): " . $conn->error);
     }
@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $stmt->bind_param("sss", $fullname, $email, $passwordHash);
 
     if ($stmt->execute()) {
-        echo "<script>alert('Registration successful! You can now log in.'); window.location.href='login.html';</script>";
+        echo "<script>alert('Registration successful! You can now log in.'); window.location.href='login.php';</script>";
     } else {
         echo "<script>alert('Error: Could not register admin. Please try again.'); window.history.back();</script>";
     }

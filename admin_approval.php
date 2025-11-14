@@ -1,3 +1,7 @@
+<?php
+include("DB.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,35 +47,27 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Paulo</td>
-                        <td>paulo@gmail.com</td>
-                        <td>Admin</td>
-                        <td>
-                            <form>
-                                <button type="button" class="approve-btn">Approve</button>
-                                <button type="button" class="deny-btn">Deny</button>
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>                    
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    <?php
+                        $sql = "SELECT AdminID, Name, Email, AccountType FROM admin WHERE status = 'Pending' ORDER BY AdminID DESC";
+				        $result = mysqli_query($conn, $sql);
+
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo "<tr>";
+                            echo "<td>{$row['Name']}</td>";
+                            echo "<td>{$row['Email']}</td>";
+                            echo "<td>{$row['AccountType']}</td>";
+                            echo "<td>";
+                            echo "<form action='admin_status.php' method='POST' style='display:inline;'>";
+                            echo "<input type='hidden' name='AdminID' value='" . $row['AdminID'] . "'>";
+                            echo "<button type='submit' class='approve-btn' name='AccountStatus' value='2'>Approve</button>";
+                            echo "<button type='submit' class='deny-btn' name='AccountStatus' value='3'>Deny</button>";
+                            echo "</form>";
+                            echo "</td>";
+                            echo "</tr>";
+                        }
+
+
+                    ?>
                 </tbody>
             </table>
         </div>
@@ -96,63 +92,37 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Chaelsy</td>
-                        <td>ChaelsyHitTheJasPot@gmail.com</td>
-                        <td>
-                            <div class="password-wrapper">
-                                <input type="password" value="hehe" class="admin-password">
-                                <img class="toggle-password" src="img/eyeClose.png" alt="Toggle password visibility">
-                            </div>
-                        </td>
-                        <td>
-                            <select class="admin-role-select">
-                                <option selected>SuperAdmin</option>
-                                <option>Admin</option>
-                            </select>
-                        </td>
-                        <td>
-                            <button type="button" class="approve-btn">Save Changes</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Mark 2</td>
-                        <td>SKJERALD@gmail.com</td>
-                        <td>
-                            <div class="password-wrapper">
-                                <input type="password" value="wahhhhh" class="admin-password">
-                                <img class="toggle-password" src="img/eyeClose.png" alt="Toggle password visibility">
-                            </div>
-                        </td>
-                        <td>
-                            <select class="admin-role-select">
-                                <option selected>Admin</option>
-                                <option>SuperAdmin</option>
-                            </select>
-                        </td>
-                        <td>
-                            <button type="button" class="approve-btn">Save Changes</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Jas</td>
-                        <td>VALERT@gmail.com</td>
-                        <td>
-                            <div class="password-wrapper">
-                                <input type="password" value="halo" class="admin-password">
-                                <img class="toggle-password" src="img/eyeClose.png" alt="Toggle password visibility">
-                            </div>
-                        </td>
-                        <td>
-                            <select class="admin-role-select">
-                                <option selected>Admin</option>
-                                <option>SuperAdmin</option>
-                            </select>
-                        </td>
-                        <td>
-                            <button type="button" class="approve-btn">Save Changes</button>
-                        </td>
-                    </tr>
+                    <?php
+                        $sql = "SELECT AdminID, Name, Email, Password, AccountType FROM admin WHERE status = 'Approved' ORDER BY AdminID DESC";
+				        $result = mysqli_query($conn, $sql);
+
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo "<tr>";
+                            echo "<td>{$row['Name']}</td>";
+                            echo "<td>{$row['Email']}</td>";
+                            echo "<td>";
+                            echo '<div class="password-wrapper">';
+                                echo "<input type='password' value='' name='Password' class='admin-password' placeholder='Enter New Password'>";
+                                echo '<img class="toggle-password" src="img/eyeClose.png" alt="Toggle password visibility">';
+                            echo "</div>";
+                            echo "</td>";
+                            echo "<td>";
+                            echo "<form action='admin_status.php' method='POST' style='display:inline;'>";
+                            echo '<select class="admin-role-select" name="AccountType">';
+                                echo "<option value='SuperAdmin' " . ($row['AccountType'] == 'SuperAdmin' ? 'selected' : '') . ">SuperAdmin</option>";
+                                echo "<option value='Admin' " . ($row['AccountType'] == 'Admin' ? 'selected' : '') . ">Admin</option>";
+                            echo "</select>";
+                            echo "</td>";
+                            echo "<td>";
+                            echo "<input type='hidden' name='AdminID' value='" . $row['AdminID'] . "'>";
+                            echo "<button type='submit' class='approve-btn' name='AccountUpdate'>Save Changes</button>";
+                            echo "</form>";
+                            echo "</td>";
+                            echo "</tr>";
+                        }
+
+
+                    ?>
                 </tbody>
             </table>
         </div>
@@ -170,5 +140,7 @@
         });
     </script>
 </body>
-
+<?php 
+    mysqli_close($conn);
+?>
 </html>

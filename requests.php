@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!isset($_SESSION['admin_id'])) {
+    header("Location: login.php");
+    exit();
+}
 include("DB.php");
 ?>
 
@@ -19,7 +24,10 @@ include("DB.php");
             <h1>BorrowIt Suhay CE</h1>
         </div>
         <nav>
-            <a href="index.html" class="nav-btn">Dashboard</a>
+            <?php if ($_SESSION['account_type'] == 'SuperAdmin'): ?>
+                <a href="admin_approval.php" class="nav-btn">Superadmin</a>
+            <?php endif; ?>
+            <!--<a href="index.php" class="nav-btn">Dashboard</a>-->
             <a href="inventory.php" class="nav-btn">Inventory</a>
             <a href="requests.php" class="nav-btn active">Requests</a>
             <a href="records.php" class="nav-btn">Records</a>
@@ -74,4 +82,3 @@ include("DB.php");
 </body>
 
 </html>
-

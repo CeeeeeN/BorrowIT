@@ -1,36 +1,8 @@
 <?php
+session_start();
 require 'DB.php'; // Connect to the database
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $email = trim($_POST['email']);
-    $password = $_POST['password'];
 
-    // Check if email exists
-    $stmt = $conn->prepare("SELECT * FROM admin WHERE email = ?");
-    if (!$stmt) {
-        die("SQL Error: " . $conn->error);
-    }
-
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows === 1) {
-        $user = $result->fetch_assoc();
-
-        // Verify password
-			if (password_verify($password, $user['password_hash'])) {
-            echo "<script>alert('Login successful! Welcome, {$user['name']}'); window.location.href='records.html';</script>";
-        } else {
-            echo "<script>alert('Incorrect password! Please try again.'); window.history.back();</script>";
-        }
-    } else {
-        echo "<script>alert('No account found with that email.'); window.history.back();</script>";
-    }
-
-    $stmt->close();
-    $conn->close();
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -64,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <div class="form-input">
                     <label>Password</label>
                     <div class="password-wrapper">
-                        <input type="password" name="password" id="loginPassword" placeholder="Enter your password" required>
+                        <input type="password" name="user_password" id="loginPassword" placeholder="Enter your password" required>
                         <img class="toggle-password" src="img/eyeClose.png" data-target="loginPassword" alt="Toggle password visibility">
                     </div>
                 </div>
@@ -95,3 +67,42 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </script>
 </body>
 </html>
+<?php 
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $email = trim($_POST['email']);
+    $password = $_POST['user_password'];
+
+    // Check if email exists
+    $stmt = $conn->prepare("SELECT * FROM admin WHERE email = ?");
+    if (!$stmt) {
+        die("SQL Error: " . $conn->error);
+    }
+
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows === 1) {
+        $user = $result->fetch_assoc();
+
+        // Verify password
+        if (password_verify($password, $user['Password'])) {
+            // Store user details in session
+            $_SESSION['admin_id'] = $user['AdminID'];
+            $_SESSION['admin_name'] = $user['name'];
+            $_SESSION['account_type'] = $user['AccountType'];
+
+            echo "<script>alert('Login successful! Welcome, {$user['name']}'); window.location.href='records.php';</script>";
+        } else {
+            echo "<script>alert('Incorrect password! Please try again.'); window.history.back();</script>";
+        }
+    } else {
+        echo "<script>alert('No account found with that email.'); window.history.back();</script>";
+    }
+
+    $stmt->close();
+    $conn->close();
+}
+
+?>

@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!isset($_SESSION['admin_id'])) {
+    header("Location: login.php");
+    exit();
+}
 include("DB.php");
 ?>
 <!DOCTYPE html>
@@ -13,12 +18,15 @@ include("DB.php");
 <body>
     <header>
         <div class="logo-container">
-            <img src="plv logo.jpg" alt="Logo 1" class="header-logo">
-            <img src="suhay ce logo.jpg" alt="Logo 2" class="header-logo">
+            <img src="img/plv logo.jpg" alt="Logo 1" class="header-logo">
+            <img src="img/suhay ce logo.jpg" alt="Logo 2" class="header-logo">
             <h1>BorrowIT Suhay CE</h1>
         </div>
         <nav>
-            <a href="admin.html" class="nav-btn">Dashboard</a>
+            <?php if ($_SESSION['account_type'] == 'SuperAdmin'): ?>
+                <a href="admin_approval.php" class="nav-btn">Superadmin</a>
+            <?php endif; ?>
+            <!--<a href="index.php" class="nav-btn">Dashboard</a>-->
             <a href="inventory.php" class="nav-btn">Inventory</a>
             <a href="requests.php" class="nav-btn">Requests</a>
             <a href="records.php" class="nav-btn active">Records</a>
@@ -76,5 +84,4 @@ include("DB.php");
         </div>
     </main>
 </body>
-
 </html>

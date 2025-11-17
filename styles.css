@@ -415,7 +415,7 @@ main {
 }
 
 /* INVENTORY PAGE */
-.inventory-main {
+.inventory-main, .admin-main {
     background-color: #fffdf5;
     min-height: calc(100vh - 92px);
     padding: 40px;
@@ -825,6 +825,20 @@ main {
     background: #9EA4AE;
 }
 
+                                                                                        /* ADMIN-APPROVAL PAGE ADDS ON */
+.admin-accounts-header {
+    margin-top: 60px;
+}
+
+.admin-password {
+    padding: 5px;
+    width: 120px;
+}
+
+.admin-role-select {
+    padding: 5px;
+}
+
 @media (max-width: 768px) {
     header {
         flex-direction: column;
@@ -917,7 +931,7 @@ main {
         align-self: flex-start;
     }
 
-    .inventory-main {
+    .inventory-main, .admin-main {
         padding: 20px;
     }
 
@@ -1008,7 +1022,7 @@ main {
         font-size: 28px;
     }
 
-    .inventory-main {
+    .inventory-main, .admin-main {
         padding: 15px;
     }
 
@@ -1062,4 +1076,3 @@ main {
         padding: 12px;
     }
 }
-

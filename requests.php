@@ -21,7 +21,7 @@ include("DB.php");
         <div class="logo-container">
             <img src="img/plv logo.jpg" alt="Logo 1" class="header-logo">
             <img src="img/suhay ce logo.jpg" alt="Logo 2" class="header-logo">
-            <h1>BorrowIt Suhay CE</h1>
+            <h1>BorrowIT Suhay CE</h1>
         </div>
         <nav>
             <?php if ($_SESSION['account_type'] == 'SuperAdmin'): ?>
@@ -82,3 +82,4 @@ include("DB.php");
 </body>
 
 </html>
+

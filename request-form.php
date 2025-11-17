@@ -16,7 +16,7 @@ include("DB.php");
         <header class="request-form-header">
             <div class="logo-container">
                 <img src="img/plv logo.jpg" alt="PLV Logo" class="header-logo">
-                <h1>BorrowIt Suhay CE</h1>
+                <h1>BorrowIT Suhay CE</h1>
                 <img src="img/suhay ce logo.jpg" alt="Suhay CE Logo" class="header-logo">
             </div>
         </header>
@@ -110,3 +110,4 @@ include("DB.php");
         </script>
     </body>
 </html>
+

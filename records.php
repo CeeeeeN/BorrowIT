@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!isset($_SESSION['admin_id'])) {
+    header("Location: login.php");
+    exit();
+}
 include("DB.php");
 ?>
 <!DOCTYPE html>
@@ -13,17 +18,21 @@ include("DB.php");
 <body>
     <header>
         <div class="logo-container">
-            <img src="plv logo.jpg" alt="Logo 1" class="header-logo">
-            <img src="suhay ce logo.jpg" alt="Logo 2" class="header-logo">
+            <img src="img/plv logo.jpg" alt="Logo 1" class="header-logo">
+            <img src="img/suhay ce logo.jpg" alt="Logo 2" class="header-logo">
             <h1>BorrowIT Suhay CE</h1>
         </div>
         <nav>
-            <a href="admin.html" class="nav-btn">Dashboard</a>
+            <?php if ($_SESSION['account_type'] == 'SuperAdmin'): ?>
+                <a href="admin_approval.php" class="nav-btn">Superadmin</a>
+            <?php endif; ?>
             <a href="inventory.php" class="nav-btn">Inventory</a>
             <a href="requests.php" class="nav-btn">Requests</a>
             <a href="records.php" class="nav-btn active">Records</a>
+            <a href="logout.php" class="nav-btn logout-btn">Logout</a>
         </nav>
     </header>
+
     <main class="inventory-main">
         <div class="page-header">
             <div>
@@ -47,7 +56,7 @@ include("DB.php");
                 <tbody>
                     <?php
                         $sql = "SELECT borrow_log_id, student_name, student_number, year_section, item_name, quantity_borrowed, borrow_date, return_date, log_status FROM student_borrow_logs ORDER BY borrow_log_id DESC";
-				        $result = mysqli_query($conn, $sql);
+                        $result = mysqli_query($conn, $sql);
 
                         while ($row = mysqli_fetch_assoc($result)) {
                             echo "<tr>";

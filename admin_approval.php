@@ -27,10 +27,10 @@ include("DB.php");
             <?php if ($_SESSION['account_type'] == 'SuperAdmin'): ?>
                 <a href="admin_approval.php" class="nav-btn active">Superadmin</a>
             <?php endif; ?>
-            <!--<a href="index.php" class="nav-btn">Dashboard</a>-->
             <a href="inventory.php" class="nav-btn">Inventory</a>
             <a href="requests.php" class="nav-btn">Requests</a>
             <a href="records.php" class="nav-btn">Records</a>
+            <a href="logout.php" class="nav-btn logout-btn">Logout</a>
         </nav>
     </header>
 
@@ -151,3 +151,4 @@ include("DB.php");
     mysqli_close($conn);
 ?>
 </html>
+

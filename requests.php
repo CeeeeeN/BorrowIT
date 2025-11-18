@@ -6,7 +6,6 @@ if (!isset($_SESSION['admin_id'])) {
 }
 include("DB.php");
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,12 +26,13 @@ include("DB.php");
             <?php if ($_SESSION['account_type'] == 'SuperAdmin'): ?>
                 <a href="admin_approval.php" class="nav-btn">Superadmin</a>
             <?php endif; ?>
-            <!--<a href="index.php" class="nav-btn">Dashboard</a>-->
             <a href="inventory.php" class="nav-btn">Inventory</a>
             <a href="requests.php" class="nav-btn active">Requests</a>
             <a href="records.php" class="nav-btn">Records</a>
+            <a href="logout.php" class="nav-btn logout-btn">Logout</a>
         </nav>
     </header>
+
     <main class="inventory-main">
         <div class="page-header">
             <div>
@@ -55,7 +55,7 @@ include("DB.php");
                 <tbody>
                     <?php
                         $sql = "SELECT borrow_log_id, student_name, student_number, year_section, item_name, quantity_borrowed, borrow_date, log_status FROM student_borrow_logs WHERE log_status = 'Requested' ORDER BY borrow_log_id DESC";
-				        $result = mysqli_query($conn, $sql);
+                        $result = mysqli_query($conn, $sql);
 
                         while ($row = mysqli_fetch_assoc($result)) {
                             echo "<tr>";
@@ -65,9 +65,9 @@ include("DB.php");
                             echo "<td>{$row['borrow_date']}</td>";
                             echo "<td>";
                             echo "<form action='borrow_status.php' method='POST'>";
-                                echo "<input type='hidden' name='id' value='" . $row['borrow_log_id'] . "'>";
-                                echo "<button type='submit' class='approve-btn' name='borrowStatus' value='2'>Approve</button>";
-                                echo "<button type='submit' class='deny-btn' name='borrowStatus' value='5'>Deny</button>";
+                            echo "<input type='hidden' name='id' value='" . $row['borrow_log_id'] . "'>";
+                            echo "<button type='submit' class='approve-btn' name='borrowStatus' value='2'>Approve</button>";
+                            echo "<button type='submit' class='deny-btn' name='borrowStatus' value='5'>Deny</button>";
                             echo "</form>";
                             echo "</td>";
                             echo "</tr>";
@@ -79,7 +79,14 @@ include("DB.php");
             </table>
         </div>
     </main>
+	
+	<script>
+        document.querySelector('.logout-btn')?.addEventListener('click', function(e) {
+            if (!confirm('Are you sure you want to logout?')) {
+                e.preventDefault();
+            }
+        });
+    </script>
 </body>
-
 </html>
 

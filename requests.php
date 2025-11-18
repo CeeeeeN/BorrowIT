@@ -81,7 +81,6 @@ include("DB.php");
     </main>
 	
 	<script>
-        // Logout confirmation
         document.querySelector('.logout-btn')?.addEventListener('click', function(e) {
             if (!confirm('Are you sure you want to logout?')) {
                 e.preventDefault();
@@ -90,3 +89,4 @@ include("DB.php");
     </script>
 </body>
 </html>
+

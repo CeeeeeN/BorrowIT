@@ -42,6 +42,37 @@ include("DB.php");
             </div>
         </div>
 
+        <div class="filters-container">
+            <div class="filter-group">
+                <label for="statusFilter">Status:</label>
+                <select id="statusFilter">
+                    <option value="">All Statuses</option>
+                    <option value="Borrowed">Borrowed</option>
+                    <option value="Returned">Returned</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="borrowerSearch">Borrower:</label>
+                <input type="text" id="borrowerSearch" placeholder="Search by name or number...">
+            </div>
+            <div class="filter-group">
+                <label for="itemSearch">Item:</label>
+                <input type="text" id="itemSearch" placeholder="Search by item name...">
+            </div>
+            <div class="filter-group">
+                <label for="startDate">From:</label>
+                <input type="date" id="startDate">
+            </div>
+            <div class="filter-group">
+                <label for="endDate">To:</label>
+                <input type="date" id="endDate">
+            </div>
+            <div class="filter-group">
+                <button id="applyFilters" class="action-btn primary">Apply Filters</button>
+                <button id="clearFilters" class="action-btn secondary">Clear</button>
+            </div>
+        </div>
+
         <div class="table-container">
             <table class="inventory-table">
                 <thead>
@@ -54,36 +85,20 @@ include("DB.php");
                         <th>Status</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <?php
-                        $sql = "SELECT borrow_log_id, student_name, student_number, year_section, item_name, quantity_borrowed, borrow_date, return_date, log_status FROM student_borrow_logs ORDER BY borrow_log_id DESC";
-                        $result = mysqli_query($conn, $sql);
-
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            echo "<tr>";
-                            echo "<td>{$row['student_name']}<br>{$row['student_number']}<br>{$row['year_section']}</td>";
-                            echo "<td>{$row['item_name']}</td>";
-                            echo "<td>{$row['quantity_borrowed']}</td>";
-                            echo "<td>{$row['borrow_date']}</td>";
-                            echo "<td>";
-                            if (is_null($row['return_date'])) {
-                                echo "<form action='mark_returned.php' method='POST' style='display:inline;'>";
-                                echo "<input type='hidden' name='borrow_log_id' value='" . $row['borrow_log_id'] . "'>";
-                                echo "<button type='submit' class='action-btn primary'>Mark Returned</button>";
-                                echo "</form>";
-                            } else {
-                                echo $row['return_date'] ?: '-';
-                            }
-                            echo "</td>";
-                            echo "<td>{$row['log_status']}</td>";
-                            echo "</tr>";
-                        }
-
-                        mysqli_close($conn);
-                    ?>
+                <tbody id="recordsTableBody">
+                    <!-- Records will be loaded here -->
                 </tbody>
             </table>
         </div>
     </main>
+    <script src="records.js"></script>
+    <script>
+        // Logout confirmation
+        document.querySelector('.logout-btn')?.addEventListener('click', function(e) {
+            if (!confirm('Are you sure you want to logout?')) {
+                e.preventDefault();
+            }
+        });
+    </script>
 </body>
 </html>

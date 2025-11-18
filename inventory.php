@@ -41,6 +41,31 @@ if (!isset($_SESSION['admin_id'])) {
             <button class="action-btn primary" onclick="openAddModal()">+ Add New Item</button>
         </div>
 
+        <div class="filters-container">
+            <div class="filter-group">
+                <label for="categoryFilter">Category:</label>
+                <select id="categoryFilter">
+                    <option value="">All Categories</option>
+                    <option value="Calculators">Calculators</option>
+                    <option value="Drafting Tools">Drafting Tools</option>
+                    <option value="Reference Books">Reference Books</option>
+                    <option value="Others">Others</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="statusFilter">Status:</label>
+                <select id="statusFilter">
+                    <option value="">All Statuses</option>
+                    <option value="available">Available</option>
+                    <option value="unavailable">Unavailable</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="searchFilter">Search:</label>
+                <input type="text" id="searchFilter" placeholder="Search items...">
+            </div>
+        </div>
+
         <div class="table-container">
             <table class="inventory-table">
                 <thead>

@@ -146,10 +146,17 @@ include("DB.php");
                 icon.src = isHidden ? 'img/eyeOpen.png' : 'img/eyeClose.png';
             });
         });
+
+        document.querySelector('.logout-btn')?.addEventListener('click', function(e) {
+            if (!confirm('Are you sure you want to logout?')) {
+                e.preventDefault();
+            }
+        });
     </script>
 </body>
 <?php 
     mysqli_close($conn);
 ?>
 </html>
+
 

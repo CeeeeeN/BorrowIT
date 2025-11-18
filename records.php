@@ -85,5 +85,13 @@ include("DB.php");
             </table>
         </div>
     </main>
+
+    <script>
+        document.querySelector('.logout-btn')?.addEventListener('click', function(e) {
+            if (!confirm('Are you sure you want to logout?')) {
+                e.preventDefault();
+            }
+        });
+    </script>
 </body>
 </html>

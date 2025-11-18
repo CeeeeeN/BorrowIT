@@ -5,7 +5,7 @@ if (!isset($_SESSION['admin_id'])) {
     exit();
 }
 ?>
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -25,7 +25,6 @@ if (!isset($_SESSION['admin_id'])) {
             <?php if ($_SESSION['account_type'] == 'SuperAdmin'): ?>
                 <a href="admin_approval.php" class="nav-btn">Superadmin</a>
             <?php endif; ?>
-            <!--<a href="index.php" class="nav-btn">Dashboard</a>-->
             <a href="inventory.php" class="nav-btn active">Inventory</a>
             <a href="requests.php" class="nav-btn">Requests</a>
             <a href="records.php" class="nav-btn">Records</a>
@@ -128,7 +127,12 @@ if (!isset($_SESSION['admin_id'])) {
     </div>
 
     <script src="inventory.js"></script>
+    <script>
+        document.querySelector('.logout-btn')?.addEventListener('click', function(e) {
+            if (!confirm('Are you sure you want to logout?')) {
+                e.preventDefault();
+            }
+        });
+    </script>
 </body>
-
 </html>
-

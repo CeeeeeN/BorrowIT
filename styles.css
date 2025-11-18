@@ -839,6 +839,16 @@ main {
     padding: 5px;
 }
 
+.logout-btn {
+    margin-left: auto;
+    background-color: #dc3545;
+    color: white !important;
+}
+
+.logout-btn:hover {
+    background-color: #c82333;
+}
+
 @media (max-width: 768px) {
     header {
         flex-direction: column;

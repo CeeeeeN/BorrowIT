@@ -1,4 +1,11 @@
- <!DOCTYPE html>
+<?php
+session_start();
+if (!isset($_SESSION['admin_id'])) {
+    header("Location: login.php");
+    exit();
+}
+?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,13 +19,16 @@
         <div class="logo-container">
             <img src="img/plv logo.jpg" alt="Logo 1" class="header-logo">
             <img src="img/suhay ce logo.jpg" alt="Logo 2" class="header-logo">
-            <h1>BorrowIt Suhay CE</h1>
+            <h1>BorrowIT Suhay CE</h1>
         </div>
         <nav>
-            <a href="index.html" class="nav-btn">Dashboard</a>
+            <?php if ($_SESSION['account_type'] == 'SuperAdmin'): ?>
+                <a href="admin_approval.php" class="nav-btn">Superadmin</a>
+            <?php endif; ?>
             <a href="inventory.php" class="nav-btn active">Inventory</a>
             <a href="requests.php" class="nav-btn">Requests</a>
             <a href="records.php" class="nav-btn">Records</a>
+            <a href="logout.php" class="nav-btn logout-btn">Logout</a>
         </nav>
     </header>
     
@@ -29,6 +39,31 @@
                 <p class="page-description">Manage all equipment items, update quantities, and track availability status.</p>
             </div>
             <button class="action-btn primary" onclick="openAddModal()">+ Add New Item</button>
+        </div>
+
+        <div class="filters-container">
+            <div class="filter-group">
+                <label for="categoryFilter">Category:</label>
+                <select id="categoryFilter">
+                    <option value="">All Categories</option>
+                    <option value="Calculators">Calculators</option>
+                    <option value="Drafting Tools">Drafting Tools</option>
+                    <option value="Reference Books">Reference Books</option>
+                    <option value="Others">Others</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="statusFilter">Status:</label>
+                <select id="statusFilter">
+                    <option value="">All Statuses</option>
+                    <option value="available">Available</option>
+                    <option value="unavailable">Unavailable</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="searchFilter">Search:</label>
+                <input type="text" id="searchFilter" placeholder="Search items...">
+            </div>
         </div>
 
         <div class="table-container">
@@ -117,6 +152,13 @@
     </div>
 
     <script src="inventory.js"></script>
+    <script>
+        // Logout confirmation
+        document.querySelector('.logout-btn')?.addEventListener('click', function(e) {
+            if (!confirm('Are you sure you want to logout?')) {
+                e.preventDefault();
+            }
+        });
+    </script>
 </body>
-
 </html>

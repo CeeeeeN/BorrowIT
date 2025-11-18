@@ -128,6 +128,7 @@ if (!isset($_SESSION['admin_id'])) {
 
     <script src="inventory.js"></script>
     <script>
+        // Logout confirmation
         document.querySelector('.logout-btn')?.addEventListener('click', function(e) {
             if (!confirm('Are you sure you want to logout?')) {
                 e.preventDefault();

@@ -158,5 +158,3 @@ include("DB.php");
     mysqli_close($conn);
 ?>
 </html>
-
-

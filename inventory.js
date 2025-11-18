@@ -1,9 +1,27 @@
- window.onload = function() {
+window.onload = function() {
     loadItems();
+    setupFilters();
 };
 
+function setupFilters() {
+    document.getElementById('categoryFilter').addEventListener('change', loadItems);
+    document.getElementById('statusFilter').addEventListener('change', loadItems);
+    document.getElementById('searchFilter').addEventListener('input', loadItems);
+}
+
 function loadItems() {
-    fetch('get_items.php')
+    const category = document.getElementById('categoryFilter').value;
+    const status = document.getElementById('statusFilter').value;
+    const search = document.getElementById('searchFilter').value;
+
+    let url = 'get_items.php?';
+    const params = [];
+    if (category) params.push('category=' + encodeURIComponent(category));
+    if (status) params.push('status=' + encodeURIComponent(status));
+    if (search) params.push('search=' + encodeURIComponent(search));
+    url += params.join('&');
+
+    fetch(url)
         .then(response => response.json())
         .then(items => {
             displayItems(items);

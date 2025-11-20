@@ -82,6 +82,21 @@ include("DB.php");
         const list = document.getElementById("dropdownList");
         const hidden = document.getElementById("itemValue");
 
+        const studentIdInput = document.querySelector("input[name='student_id']");
+
+        studentIdInput.addEventListener("input", function () {
+            // Remove all non-digits
+            let value = this.value.replace(/\D/g, "");
+
+            // Auto-insert dash after 2 digits
+            if (value.length > 2) {
+                value = value.slice(0, 2) + "-" + value.slice(2);
+            }
+
+            // Limit to XX-XXXX format (7 characters total)
+            this.value = value.slice(0, 7);
+        });
+
         // Show dropdown when inputted
         input.addEventListener("focus", () => {
             list.style.display = "block";

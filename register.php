@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BorrowIt Suhay CE | Register</title>
+    <title>BorrowIT Suhay CE | Register</title>
     <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
@@ -145,13 +145,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                 <div class="form-input">
                     <label>Email</label>
-                    <input type="email" name="email" placeholder="Enter email address" required>
+                    <input type="email" name="email" autocomplete="email" placeholder="Enter email address" required>
                 </div>
 
                 <div class="form-input">
                     <label>Password</label>
                     <div class="password-wrapper">
-                        <input type="password" id="password" name="password" placeholder="Enter password" required>
+                        <input type="password" id="password" autocomplete="new-password" name="password" placeholder="Enter password" required>
                         <img class="toggle-password" src="img/eyeClose.png" data-target="password">
                     </div>
                 </div>
@@ -159,7 +159,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <div class="form-input">
                     <label>Confirm Password</label>
                     <div class="password-wrapper">
-                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
+                        <input type="password" id="confirmPassword" autocomplete="new-password" name="confirmPassword" placeholder="Confirm Password" required>
                         <img class="toggle-password" src="img/eyeClose.png" data-target="confirmPassword">
                     </div>
                     <div class="password-indicator" id="passwordIndicator"></div>

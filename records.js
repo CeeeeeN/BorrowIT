@@ -56,10 +56,12 @@ function displayRecords(records) {
     records.forEach(record => {
         const returnDateCell = record.return_date ?
             record.return_date :
-            `<form action='mark_returned.php' method='POST' style='display:inline;'>
-                <input type='hidden' name='borrow_log_id' value='${record.borrow_log_id}'>
-                <button type='submit' class='action-btn primary'>Mark Returned</button>
-            </form>`;
+            (record.log_status == 'Approved' ?
+                `<form action='mark_returned.php' method='POST' style='display:inline;'>
+                    <input type='hidden' name='borrow_log_id' value='${record.borrow_log_id}'>
+                    <button type='submit' class='action-btn primary'>Returned</button>
+                </form>` :
+                '');
 
         const row = `
             <tr>

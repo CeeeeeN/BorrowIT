@@ -20,15 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif (isset($_POST['AccountUpdate'])) {
         $adminID = $_POST['AdminID'];
         $accountType = $_POST['AccountType'];
-        $password = $_POST['Password'];
 
-        // Hash the password if it's not empty
-        if (!empty($password)) {
-            $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-            $sql = "UPDATE admin SET AccountType = '$accountType', Password = '$passwordHash' WHERE AdminID = $adminID";
-        } else {
-            $sql = "UPDATE admin SET AccountType = '$accountType' WHERE AdminID = $adminID";
-        }
+        $sql = "UPDATE admin SET AccountType = '$accountType' WHERE AdminID = $adminID";
 
         if (mysqli_query($conn, $sql)) {
             echo "<script>alert('Admin account updated successfully!');</script>";

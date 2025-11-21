@@ -94,7 +94,6 @@ include("DB.php");
                     <tr>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Password</th>
                         <th>Account Type</th>
                         <th>Action</th>
                     </tr>
@@ -108,12 +107,6 @@ include("DB.php");
                             echo "<tr>";
                             echo "<td>{$row['Name']}</td>";
                             echo "<td>{$row['Email']}</td>";
-                            echo "<td>";
-                            echo '<div class="password-wrapper">';
-                                echo "<input type='password' value='' name='Password' class='admin-password' placeholder='Enter New Password'>";
-                                echo '<img class="toggle-password" src="img/eyeClose.png" alt="Toggle password visibility">';
-                            echo "</div>";
-                            echo "</td>";
                             echo "<td>";
                             echo "<form action='admin_status.php' method='POST' style='display:inline;'>";
                             echo '<select class="admin-role-select" name="AccountType">';
@@ -137,16 +130,6 @@ include("DB.php");
     </main>
 
     <script>
-        // Toggle password visibility
-        document.querySelectorAll('.toggle-password').forEach(icon => {
-            icon.addEventListener('click', () => {
-                const input = icon.previousElementSibling;
-                const isHidden = input.type === 'password';
-                input.type = isHidden ? 'text' : 'password';
-                icon.src = isHidden ? 'img/eyeOpen.png' : 'img/eyeClose.png';
-            });
-        });
-
         document.querySelector('.logout-btn')?.addEventListener('click', function(e) {
             if (!confirm('Are you sure you want to logout?')) {
                 e.preventDefault();

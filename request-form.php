@@ -56,7 +56,7 @@ include("DB.php");
 
                             while ($row = mysqli_fetch_assoc($result)) {
                                 if ($row['quantity'] >= 1) {
-                                    echo "<div data-value='{$row['name']}'>{$row['name']}</div>";
+                                    echo "<div data-value='{$row['name']}'>{$row['name']}: Stock({$row['quantity']})</div>";
                                 }
                             }
 

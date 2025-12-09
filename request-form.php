@@ -28,6 +28,10 @@ include("DB.php");
         <div class="request-form-card">
             <h2 class="request-form-title">Borrow Request Form</h2>
 
+            <div id="successMessage" class="success-alert" style="display:none;">
+                Request submitted
+            </div>
+
             <form class="request-form-form" method="POST" action="submit-request.php">
 
                 <div class="form-input">
@@ -139,6 +143,18 @@ include("DB.php");
         });
 
     </script>
+    <?php if (isset($_GET['success'])): ?>
+        <script>
+            window.onload = function () {
+                const msg = document.getElementById("successMessage");
+                msg.style.display = "block";
+
+                setTimeout(() => {
+                    msg.style.display = "none";
+                }, 2000);
+            };
+        </script>
+    <?php endif; ?>
 </body>
 
 </html>

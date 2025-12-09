@@ -47,7 +47,8 @@ include("DB.php");
                 <label for="statusFilter">Status:</label>
                 <select id="statusFilter">
                     <option value="">All Statuses</option>
-                    <option value="Borrowed">Borrowed</option>
+                    <option value="Approved">Approved</option>
+                    <option value="Requested">Requested</option>
                     <option value="Returned">Returned</option>
                 </select>
             </div>

@@ -18,7 +18,7 @@ require 'DB.php'; // Connect to the database
     <header class="login-header">
         <div class="logo-container">
             <img src="img/plv logo.jpg" alt="PLV Logo" class="header-logo">
-            <h1>BorrowIt Suhay CE</h1>
+            <h1>BorrowIT Suhay CE</h1>
             <img src="img/suhay ce logo.jpg" alt="Suhay CE Logo" class="header-logo">
         </div>
     </header>
@@ -30,13 +30,13 @@ require 'DB.php'; // Connect to the database
             <form class="login-form" method="POST" action="login.php">
                 <div class="form-input">
                     <label>Email</label>
-                    <input type="email" name="email" placeholder="Enter your email" required>
+                    <input type="email" name="email" autocomplete="email" placeholder="Enter your email" required>
                 </div>
 
                 <div class="form-input">
                     <label>Password</label>
                     <div class="password-wrapper">
-                        <input type="password" name="user_password" id="loginPassword" placeholder="Enter your password" required>
+                        <input type="password" name="user_password" id="loginPassword" autocomplete="current-password" placeholder="Enter your password" required>
                         <img class="toggle-password" src="img/eyeClose.png" data-target="loginPassword" alt="Toggle password visibility">
                     </div>
                 </div>

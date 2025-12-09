@@ -11,8 +11,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (mysqli_query($conn, $sql)) {
         // If approval is granted (status 2), deduct quantity from inventory
         if ($approval == 2) {
-            // Fetch the item name and quantity borrowed
-            $fetch_sql = "SELECT item_name, quantity_borrowed FROM student_borrow_logs JOIN inventory ON student_borrow_logs.item_name = inventory.name ";
+            // Fetch the item name and quantity borrowed for the specific borrow_log_id
+            $fetch_sql = "SELECT item_name, quantity_borrowed FROM student_borrow_logs WHERE borrow_log_id = $review_id";
             $result = mysqli_query($conn, $fetch_sql);
 
             if ($result && mysqli_num_rows($result) > 0) {
